@@ -48,3 +48,6 @@ cd nature-library-search
 ## 搭配的 skill
 `twna-ebhc-report`（寫報告）、`prisma-2020-master`（PRISMA 清單）、`nature-academic-search`（MeSH 策略、書目格式）、
 `nature-downloader`（合法全文取得）、`apa7-master`（參考文獻格式）。
+
+## 授權
+MIT License（見 `LICENSE`）。程式與說明可自由使用、修改與散布；各資料庫匯出的書目內容仍受該資料庫授權條款約束，請勿公開再散布檢索結果。

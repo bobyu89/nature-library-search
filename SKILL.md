@@ -15,6 +15,7 @@ description: >-
   Zotero、更新檢索, or is preparing the search section of a TWNA EBHC A類／B類實證報告,
   systematic review, scoping review or thesis — even if they only say「幫我查文獻」
   「用我們圖書館」「PRISMA 待填」「把文獻丟進 Zotero」.
+license: MIT
 ---
 
 # Nature Library Search — Router

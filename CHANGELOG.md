@@ -3,7 +3,7 @@
 ## 1.2.0 — 2026-10-28
 - Carrier-neutral: runs on Claude Code or OpenAI Codex (`references/09-carriers.md`, `agents/openai.yaml`, `AGENTS.md`).
 - `install.ps1` / `install.sh` link one git checkout into `~/.claude/skills` and `~/.codex/skills`.
-- Published as a GitHub repository; `.gitignore` keeps search data out of version control.
+- MIT License; published as a public GitHub repository; `.gitignore` keeps search data out of version control.
 
 ## 1.1.0 — 2026-10-28
 Deeper
