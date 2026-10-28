@@ -23,4 +23,4 @@ foreach ($d in $dests) {
     Write-Host "linked $link -> $src"
 }
 try { python -I -c "import matplotlib" 2>$null; if ($LASTEXITCODE -ne 0) { Write-Warning 'pip install matplotlib (needed for PRISMA diagrams)' } } catch { Write-Warning 'Python 3 not found' }
-Write-Host 'Next: copy config\library.template.yaml to config\library.<yours>.yaml, point manifest.yaml at it, then ask your agent "用我們圖書館幫我做完整搜尋".'
+Write-Host 'Next: copy config\library.template.yaml to config\library.<yours>.yaml, point manifest.yaml at it, then ask Claude or Codex to run a full library search (or type $nature-library-search in Codex).'
