@@ -1,0 +1,42 @@
+# 國軍醫院聯合圖書館／國防醫學大學（NDMU）電子資源 — verified 2026-10.
+# Copy library.template.yaml to make a config for another library.
+library:
+  name: 國軍醫院聯合圖書館－國防醫學大學電子資源查詢系統
+  login_url: https://800a.flysheet.com.tw/user/login/
+  login: user-only          # the user types account, password and captcha in the built-in browser
+  session_timeout_min: 30   # idle > 30 min logs out; ask the user to log in again
+  proxy_suffix: .mhdla.flysheet.com.tw:8443   # e.g. www-embase-com.mhdla.flysheet.com.tw:8443
+  policy:
+    - 下載文獻須遵守著作權法；不得使用自動下載軟體連續、大量、有系統地下載檔案。
+    - 院外連線 5 分鐘內下載超過 500 MB 會鎖帳號 60 分鐘。
+    - 10 分鐘內密碼錯 3 次會鎖 10 分鐘（Claude 不輸入密碼）。
+  contact: 館員楊小姐 ymj@mail.ndmutsgh.edu.tw 分機 18045
+
+databases:
+  cochrane:
+    entry: https://800a.flysheet.com.tw/er/geter/DBP00000138/
+    lands_on: www.cochranelibrary.com (access shown as "National Defense Medical University (NDMU)")
+    search_manager: https://www-cochranelibrary-com.mhdla.flysheet.com.tw:8443/advanced-search/search-manager
+    export: bulk citation export, RIS (EndNote) with abstracts, no login needed
+  embase:
+    entry: https://800a.flysheet.com.tw/er/geter/DBP00000263/
+    lands_on: www.embase.com (IP-authenticated through the proxy)
+    export_limit_unregistered: 500   # per export; split by publication year
+  cinahl:
+    entry: https://800a.flysheet.com.tw/er/geter/DBP00000013/
+    lands_on: research.ebsco.com/c/3h2q4r/... (new EBSCO UI; opid 3h2q4r, db code ccm)
+    opid: 3h2q4r
+    export_note: bulk "匯出結果" needs a personal MyEBSCO login → use the JSON search API instead
+  scopus:
+    entry: https://800a.flysheet.com.tw/er/geter/DBP00000264/
+    use: supplementary / sensitivity check
+  airiti:
+    entry: https://www.airitilibrary.com/
+    access: IP recognised as 國防醫學大學圖書館 when on the proxy/campus network; no login
+  pubmed:
+    entry: NCBI E-utilities (no proxy needed) — scripts/pubmed_ris.py
+
+zotero:
+  data_dir: C:\Users\bobyu\Zotero
+  connector: http://127.0.0.1:23119
+  local_api: disabled

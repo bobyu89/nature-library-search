@@ -1,0 +1,24 @@
+# Template — copy to library.<yourlib>.yaml and fill in. Point manifest.yaml always_load at it.
+# How to find the values: log in to your library's e-resource portal, open each database from
+# the portal, and copy the portal link (the "entry") and the address it lands on.
+library:
+  name: <圖書館名稱>
+  login_url: <登入頁網址>
+  login: user-only
+  session_timeout_min: <閒置登出分鐘數>
+  proxy_suffix: <EZproxy/flysheet 尾碼，例如 .ezproxy.xxx.edu.tw>
+  policy:
+    - <下載與使用規範，例如每 5 分鐘下載上限>
+  contact: <館員聯絡方式>
+
+databases:
+  cochrane: { entry: <入口網址>, lands_on: <實際網域> }
+  embase:   { entry: <入口網址>, lands_on: <實際網域>, export_limit_unregistered: 500 }
+  cinahl:   { entry: <入口網址>, lands_on: research.ebsco.com/c/<opid>/..., opid: <opid> }
+  scopus:   { entry: <入口網址> }
+  airiti:   { entry: https://www.airitilibrary.com/, access: <IP 認證或需登入> }
+  pubmed:   { entry: NCBI E-utilities }
+
+zotero:
+  data_dir: <Zotero 資料夾>
+  connector: http://127.0.0.1:23119

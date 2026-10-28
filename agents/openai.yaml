@@ -1,0 +1,4 @@
+interface:
+  display_name: "Nature Library Search"
+  short_description: "Library-proxy systematic search → dedup → dual screening → PRISMA → Zotero"
+  default_prompt: "Use $nature-library-search to run a complete, reproducible database search through my library, export and deduplicate all records, screen them with two independent screeners, and produce the PRISMA diagram, PRISMA-S appendix and Zotero import."

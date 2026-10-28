@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+# never commit search data, screening decisions, exports or Zotero snapshots
+work/
+raw/
+*.sqlite
+*.sqlite-wal
+*.zip
+.DS_Store

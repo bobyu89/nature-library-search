@@ -1,0 +1,77 @@
+---
+name: nature-library-search
+version: 1.2.0
+description: >
+  Declarative manifest for the router in SKILL.md. Main axis: pipeline stage. Second axis: database recipes,
+  one file per database used.
+
+always_load:
+  - references/00-principles.md
+  - references/09-carriers.md    # Claude Code vs Codex tool mapping
+  - config/library.ndmu.yaml   # replace with the user's own config/library.<name>.yaml
+
+axes:
+  stage:
+    detect: |
+      Map the request to one or more stages, in pipeline order. Resume with scripts/state.py show.
+        strategy       — PICO → syntax, seed papers
+        login          — the user signs in to the library proxy
+        export         — run searches, log every line, export all records
+        seed-check     — validate the strategy against known key papers
+        dedup          — parse exports, remove duplicates
+        pilot          — calibration sample, author vs AI kappa
+        screening      — dual independent title/abstract screening + adjudication
+        fulltext       — retrieve and judge full texts
+        supplementary  — citation chasing, trial registries, sensitivity variants
+        outputs        — PRISMA, methods text, PRISMA-S appendix, exclusion appendix, CSV, rubric
+        zotero         — BibTeX per PRISMA stage and import
+        archive        — reproducibility package; living update searches
+    values:
+      strategy:      references/02-search-strategy.md
+      login:         references/01-login-and-safety.md
+      export:        [references/03-browser-data-out.md, templates/js/preflight.js]
+      seed-check:    references/07-validation-and-supplementary.md
+      dedup:         references/04-dedup-and-screening.md
+      pilot:         references/04-dedup-and-screening.md
+      screening:     [references/04-dedup-and-screening.md, templates/criteria_template.md]
+      fulltext:      references/04-dedup-and-screening.md
+      supplementary: references/07-validation-and-supplementary.md
+      outputs:       [references/05-outputs.md, references/08-reporting-and-rubric.md, templates/searches.example.json, templates/sof_template.md]
+      zotero:        references/06-zotero-import.md
+      archive:       references/08-reporting-and-rubric.md
+    multi: true
+
+  database:
+    detect: Load one file per database the strategy uses.
+    values:
+      pubmed:   references/databases/pubmed.md
+      cochrane: references/databases/cochrane.md
+      embase:   references/databases/embase.md
+      cinahl:   references/databases/cinahl.md      # also PsycInfo / MEDLINE on EBSCO, see other-sources
+      airiti:   references/databases/airiti.md
+      scopus:   references/databases/scopus.md
+      other:    references/databases/other-sources.md   # WoS, NDLTD, CNKI, Google Scholar (unverified recipes)
+    multi: true
+
+scripts:
+  state.py:          init / mark / show pipeline state with file hashes (resume)
+  pubmed_ris.py:     PubMed E-utilities search + RIS
+  collect_chunks.py: rebuild exports from @@CHUNK dumps in tool-results
+  seed_check.py:     key-paper recall per database
+  dedup.py:          parse RIS/CINAHL JSON, deduplicate, near-duplicate list
+  pilot_sample.py:   stratified calibration sample for the author
+  make_batches.py:   screening batches for subagents
+  screen_compare.py: dual-screener agreement, kappa, conflict sheet, --resolve
+  screen_merge.py:   decisions + full-text spec → screen/counts JSON
+  citation_chase.py: OpenAlex backward/forward citation chasing
+  ctgov.py:          ClinicalTrials.gov API v2 → JSON + RIS
+  prisma_diagram.py: PRISMA 2020 PNG
+  prisma_s.py:       PRISMA-S appendix + 16-item status (md/docx)
+  to_csv.py:         per-record screening log
+  to_bib.py:         BibTeX per PRISMA stage
+  export_formats.py: combined RIS, Rayyan CSV, Covidence RIS
+  zotero_import.py:  selected / check / mkcoll / import --skip-existing
+  living_update.py:  new-only records for update searches
+  archive.py:        zip + SHA-256 manifest
+
+tests: tests/run_tests.py (synthetic fixtures; --real <dir> reproduces 1,403→1,138 and 1,277→1,092)

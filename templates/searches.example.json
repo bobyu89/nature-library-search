@@ -1,0 +1,47 @@
+{
+  "topic": "sema",
+  "question": "未伴隨糖尿病之過重或肥胖成人使用 semaglutide 是否降低 MACE",
+  "searcher": "作者（Claude Code 協助執行）",
+  "peer_review_of_strategy": "未經館員或第二人審閱（PRESS）",
+  "date_range": "2015/01/01–2026/10/14",
+  "language_limit": "無",
+  "databases": [
+    {
+      "name": "PubMed",
+      "platform": "NCBI PubMed (E-utilities)",
+      "access": "公開",
+      "searched": "2026-10-14",
+      "exported": "2026-10-14",
+      "lines": [
+        {"n": "#1", "query": "\"semaglutide\"[Supplementary Concept] OR semaglutide[tiab] OR Wegovy[tiab]", "hits": 5853},
+        {"n": "#2", "query": "\"Obesity\"[MeSH] OR \"Overweight\"[MeSH] OR obes*[tiab] OR overweight[tiab]", "hits": 321135},
+        {"n": "#5", "query": "#1 AND #2 AND #3 AND #4", "hits": 195}
+      ],
+      "limits": "出版日期 2015/01/01–2026/10/14",
+      "filters": "研究設計過濾（RCT／SR／MA）",
+      "records_exported": 195,
+      "notes": ""
+    },
+    {
+      "name": "Embase",
+      "platform": "Embase.com (Elsevier)",
+      "access": "國軍醫院聯合圖書館代理",
+      "searched": "2026-10-14",
+      "exported": "2026-10-20",
+      "lines": [
+        {"n": "#3", "query": "('semaglutide'/exp OR semaglutide:ti,ab,kw ...) AND ... AND [2015-2026]/py AND [humans]/lim NOT 'conference abstract'/it", "hits": 767},
+        {"n": "#4", "query": "#3 AND [1-1-1900]/sd NOT [15-10-2026]/sd", "hits": 762}
+      ],
+      "limits": "2015–2026；限人類；排除會議摘要；收錄日期至 2026/10/14",
+      "filters": "研究設計過濾",
+      "records_exported": 762,
+      "notes": "自動 mapping 關閉；較 10/14 少 1 筆（上游合併或撤除）"
+    }
+  ],
+  "other_methods": [
+    {"name": "Scopus 敏感度檢查", "date": "2026-10-14", "detail": "TITLE-ABS-KEY(...)", "hits": 272, "added": 0},
+    {"name": "引文追蹤（OpenAlex）", "date": "2026-10-28", "detail": "納入 3 篇之參考文獻與被引用文獻", "hits": 0, "added": 0}
+  ],
+  "dedup": {"method": "DOI、PMID、篇名比對（scripts/dedup.py），以 Zotero 管理", "removed": 265},
+  "seed_check": "3/3 篇已知關鍵文獻被檢出"
+}
