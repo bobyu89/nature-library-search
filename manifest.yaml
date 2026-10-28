@@ -1,6 +1,6 @@
 ---
 name: nature-library-search
-version: 1.2.0
+version: 1.2.1
 description: >
   Declarative manifest for the router in SKILL.md. Main axis: pipeline stage. Second axis: database recipes,
   one file per database used.

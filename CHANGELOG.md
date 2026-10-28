@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.1 — 2026-10-28
+- `prisma_diagram.py` rebuilt box-for-box on the official PRISMA 2020 template (v1; v2 other-methods column with
+  `--other`): header bar, Databases/Registers, the three removed-before-screening lines, studies vs reports in the
+  included box; non-template text removed from the figure; `--labels` JSON for database detail lines and full
+  reason wording; optional `--automation` (human vs automation exclusions), `--ta-reasons`, `--studies`.
+- Figure text enlarged (11 pt) and insertion guidance ≥ 400 pt so the printed figure is readable.
+
 ## 1.2.0 — 2026-10-28
 - Carrier-neutral: runs on Claude Code or OpenAI Codex (`references/09-carriers.md`, `agents/openai.yaml`, `AGENTS.md`).
 - `install.ps1` / `install.sh` link one git checkout into `~/.claude/skills` and `~/.codex/skills`.

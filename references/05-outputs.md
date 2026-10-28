@@ -1,16 +1,32 @@
 # Outputs
 
 ## PRISMA 2020 flow diagram
+The script follows the official template (Page et al., 2021, BMJ 372:n71, Figure 1) box for box:
+
+| Template box | Our wording |
+|---|---|
+| header: Identification of studies via databases and registers | 經由資料庫與登錄系統辨識研究 |
+| Records identified from: Databases (n) / Registers (n) — per-database counts recommended | 檢索所得之紀錄：資料庫（n）＋各資料庫（n）＋登錄系統（n） |
+| Records removed before screening: duplicates / marked ineligible by automation tools / other reasons | 篩選前移除之紀錄：重複紀錄／經自動化工具標記為不符資格／其他原因移除 |
+| Records screened → Records excluded** | 篩選之紀錄 → 排除之紀錄 |
+| Reports sought for retrieval → Reports not retrieved | 尋求全文之報告 → 無法取得之報告 |
+| Reports assessed for eligibility → Reports excluded: Reason 1 (n) … | 評估資格之報告 → 排除之報告：各理由（n） |
+| Studies included in review / Reports of included studies | 納入回顧之研究（n）／納入研究之報告（n） |
+| v2 grey column: Identification of studies via other methods | 經由其他方法辨識研究（`--other other.json`） |
+
 ```bash
-python -I scripts/prisma_diagram.py --counts <work>/counts_<topic>.json --out PRISMA_<topic>.png \
-  --included "RCT 1 篇：Lincoff et al. (2023) SELECT" --included "SR/MA 2 篇：Bracchiglione et al. (2025)；Yin et al. (2025)" \
-  --db-label "Cochrane=Cochrane Library（Reviews 4、CENTRAL 153）" \
-  --header "敏感度檢查：Scopus 補充檢索（n = 272），未發現新增符合條件之文獻" \
-  --footer "檢索日期：2026-10-14；書目匯出：2026-10-20"
+python -I scripts/prisma_diagram.py --counts <work>/counts_<topic>.json --labels labels_<topic>.json --out PRISMA_<topic>.png
+# labels_<topic>.json (UTF-8 file — safer than CLI args for Chinese on Windows):
+# {"db": {"Cochrane": "Cochrane Library|Reviews 4、CENTRAL 153"},
+#  "reasons": {"預印本": "未經同儕審查之預印本", "SELECT次要分析": "SELECT 試驗之次要分析"}}
 ```
-Boxes: identification by database (with Cochrane Reviews/CENTRAL split), duplicates removed, screened,
-excluded with reasons, sought, not retrieved (named), assessed, excluded with reasons, included (named).
-Insert at ~360–400 px wide in a 16-page-limited manuscript.
+Keep out of the figure anything the template does not have (sensitivity searches, dates, study names, title/abstract
+reasons) — put them in the text or the caption. Options when needed: `--other` (v2 column for citation chasing /
+websites), `--studies` (when several reports belong to one study), `--registers`, `--ta-reasons`, `--automation N`
+(the template's footnote **: human vs automation-tool exclusions — required once AI exclusions are final).
+
+Insert the PNG at **≥ 400 pt wide** (about 14 cm, the A4 text width with TWNA margins). At 270–300 pt the 11-pt
+figure text prints at ~4 pt and is unreadable. Check the page count afterwards (it can add a page).
 
 ## Methods paragraph (fill from counts JSON)
 「五個資料庫共檢得 {total} 筆，以 Zotero 管理書目，依 DOI、PubMed 編號（PMID）及篇名比對去除重複 {dup} 筆，餘
